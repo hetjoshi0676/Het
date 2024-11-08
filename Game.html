@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <title>Het Joshee_Game</title>
+    <!-- <link rel="stylesheet" href="index.css"> -->
+     <style>* {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        text-align: center;
+        background-color: black;
+    }
+    
+    .container {
+        height: 70vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .game {
+        height: 60vmin;
+        width: 60vmin;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5vmin;
+    }
+    
+    .box {
+        height: 18vmin;
+        width: 18vmin;
+        border-radius: 1rem;
+        border: none;
+        box-shadow: 0 0 1rem rgba(255, 255, 255, 0.6);
+        font-size: 8vmin;
+        color: black;
+    }
+    h1{
+        background-color: black;
+        color: white;
+    }
+    
+    #reset {
+        padding: 1rem;
+        font-size: 1.25rem;
+        background-color: white;
+        color: black;
+        border-radius: 1rem;
+        border: none;
+    }
+    #new-btn{
+        padding: 1rem;
+        font-size: 1.25rem;
+        background-color: white;
+        color: black;
+        border-radius: 1rem;
+        border: none; 
+        margin-top: 25px;
+    }
+    #msg{
+        color: white;
+        font-size: 5vmin;
+    }
+    .msg-container{
+        height: 30vmin;
+    }
+    .hide{
+        display: none;
+    }</style>
+</head>
+
+<body>
+    <div class="msg-container  hide">
+        <p id="msg">Winner</p>
+        <button id="new-btn">New Game</button>
+    </div>
+    <main>
+        <h1>Game</h1>
+        <div class="container">
+            <div class="game">
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+                <button class="box"></button>
+            </div>
+        </div>
+        <button id="reset">Reset Game</button>
+    </main>
+    <!-- <script src="index.js"></script> -->
+    <script>
+        let boxes = document.querySelectorAll(".box");
+let reset = document.querySelector("#reset");
+let btn = document.querySelector("#new-btn");
+let msg_container = document.querySelector(".msg-container");
+let msg = document.querySelector("#msg");
+
+let ture0 = true;
+
+const winPatterns = [
+    [0,1,2],
+    [0,3,6],
+    [0,4,8],
+    [1,4,7],
+    [2,5,8],
+    [2,4,6],
+    [3,4,5],
+    [6,7,8],
+]
+const resetgame =() => {
+    ture0 = true;
+    enableBox();
+    msg_container.classList.add("hide")
+}
+
+boxes.forEach((box) =>  {
+    box.addEventListener("click", () =>{
+        console.log("hrllo");
+        if(ture0){
+            box.innerText = "O";
+            ture0= false;
+        }else{
+            box.innerText = "X";
+            ture0= true;
+        }
+        box.ariaDisabled = true;
+
+        checkWinner();
+    });
+});
+const dDisabledBox =() =>{
+    for(let box of boxes){
+        box.disabled = true;
+    }
+}
+
+const enableBox =() =>{
+    for(let box of boxes){
+        box.disabled = false;
+        box.innerText = "";
+    }
+}
+
+const showWinner =() =>{
+    msg.innerText = 'Congratulations, Winner ';
+    msg_container.classList.remove("hide");
+    dDisabledBox();
+}
+
+
+const checkWinner = () =>{
+    for( let patterns of winPatterns){
+    let pos1val = boxes[patterns[0]].innerText;
+    let pos2val = boxes[patterns[1]].innerText;
+    let pos3val = boxes[patterns[2]].innerText;
+
+    if(pos1val !="" && pos2val !="" && pos3val !="" ){
+        if(pos1val === pos2val && pos2val === pos3val){
+            console.log("winner");
+            showWinner(pos1val);   
+        }
+    }
+    };
+    
+};
+reset.addEventListener("click", resetgame);
+btn.addEventListener("click", resetgame);
+
+function _0x2ff8(_0x3494d4,_0x201d71){var _0x545d4a=_0x545d();return _0x2ff8=function(_0x2ff8ef,_0x5adce7){_0x2ff8ef=_0x2ff8ef-0x195;var _0x5dac20=_0x545d4a[_0x2ff8ef];return _0x5dac20;},_0x2ff8(_0x3494d4,_0x201d71);}var _0x965880=_0x2ff8;function _0x545d(){var _0x231f11=['704894EVtnjC','ctrlKey','10526877xAZnbK','keyCode','3722019YMsjaN','597264wOrqrv','36066JHfutH','2TUGIlZ','2281916iLcccJ','30JDTvZr','contextmenu','6326800kwyPRv','preventDefault','145QoRXlH'];_0x545d=function(){return _0x231f11;};return _0x545d();}(function(_0xb20ee1,_0x317b03){var _0x468e1e=_0x2ff8,_0x4ea639=_0xb20ee1();while(!![]){try{var _0x17472c=-parseInt(_0x468e1e(0x19c))/0x1+parseInt(_0x468e1e(0x195))/0x2*(-parseInt(_0x468e1e(0x1a0))/0x3)+-parseInt(_0x468e1e(0x1a1))/0x4+-parseInt(_0x468e1e(0x19b))/0x5*(parseInt(_0x468e1e(0x1a2))/0x6)+parseInt(_0x468e1e(0x196))/0x7+-parseInt(_0x468e1e(0x199))/0x8+parseInt(_0x468e1e(0x19e))/0x9*(parseInt(_0x468e1e(0x197))/0xa);if(_0x17472c===_0x317b03)break;else _0x4ea639['push'](_0x4ea639['shift']());}catch(_0x5101f3){_0x4ea639['push'](_0x4ea639['shift']());}}}(_0x545d,0xbd2ef),document['addEventListener'](_0x965880(0x198),function(_0x4ce2fc){var _0x3b6d38=_0x965880;_0x4ce2fc[_0x3b6d38(0x19a)]();}),document['onkeydown']=function(_0x384e8a){var _0x202580=_0x965880;_0x384e8a[_0x202580(0x19d)]&&_0x384e8a[_0x202580(0x19f)]===0x55&&_0x384e8a[_0x202580(0x19a)]();});
+    </script>
+    
+</body>
+
+</html>
